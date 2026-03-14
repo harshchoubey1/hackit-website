@@ -167,7 +167,7 @@ export default function Hero() {
             <div className="hero-accent-image">
 
                 <Image
-                    src="/images/statue.png"
+                    src="/images/jesus.png"
                     alt="Statue Accent"
                     width={500}
                     height={400}

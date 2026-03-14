@@ -29,6 +29,7 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={`${outfit.variable} ${spaceGrotesk.variable} bg-black text-white flex flex-col min-h-screen`}
+        suppressHydrationWarning
       >
         <main className="flex-1 w-full">{children}</main>
       </body>

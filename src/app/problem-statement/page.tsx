@@ -117,7 +117,7 @@ detail:"Build a web platform where hackathon participants can find teammates, sh
 export default function ProblemStatements(){
 
 const [selectedDomain,setSelectedDomain]=useState("All");
-const [activeProblem,setActiveProblem]=useState(null);
+const [activeProblem,setActiveProblem]=useState<typeof problems[0] | null>(null);
 
 const filteredProblems =
 selectedDomain==="All"
