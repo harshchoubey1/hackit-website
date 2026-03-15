@@ -1,114 +1,94 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
 
-export default function FaqPartners() {
-    const [openIndex, setOpenIndex] = useState<number | null>(null);
+export default function FAQ() {
 
-    const faqData = [
-        {
-            question: "WHAT IS THE TEAM SIZE?",
-            answer: "Teams can have 1–4 members. Solo participation is also allowed."
-        },
-        {
-            question: "WHAT IS EXPECTED TO BE BUILT?",
-            answer: "Participants should build an innovative prototype or solution based on the hackathon theme."
-        },
-        {
-            question: "HOW CAN I GET SHORTLISTED?",
-            answer: "Teams are shortlisted based on idea originality, feasibility, and application quality."
-        },
-        {
-            question: "IS THERE A REGISTRATION FEE?",
-            answer: "No. The hackathon is completely free to participate in."
-        }
-    ];
+  const [openIndex, setOpenIndex] = useState<number | null>(0);
 
-    const partners = [
-        { name: "Devfolio", icon: "/images/devfolio-partner.svg" },
-        { name: "Polygon", icon: "/images/polygon-partner.svg" },
-        { name: "Replit", icon: "/images/replit-partner.svg" },
-        { name: "Solana", icon: "/images/solana-partner.svg" },
-        { name: "Filecoin", icon: "/images/filecoin-partner.svg" },
-    ];
+  const faqData = [
+    {
+      question: "WHAT IS THE TEAM SIZE?",
+      answer: "Teams can have 1–4 members. Solo participation is also allowed."
+    },
+    {
+      question: "WHAT IS EXPECTED TO BE BUILT?",
+      answer: "Participants should build an innovative prototype or solution based on the hackathon theme."
+    },
+    {
+      question: "HOW CAN I GET SHORTLISTED?",
+      answer: "Teams are shortlisted based on idea originality, feasibility, and application quality."
+    },
+    {
+      question: "IS THERE A REGISTRATION FEE?",
+      answer: "Yes. The hackathon has a minimal fee to participate in."
+    },
+    {
+      question: "WHO CAN PARTICIPATE?",
+      answer: "Students, developers, designers, and innovators from any background are welcome to participate."
+    },
+    {
+      question: "DO I NEED PRIOR HACKATHON EXPERIENCE?",
+      answer: "No. Beginners are absolutely welcome. Mentors will be available to guide you during the event."
+    },
+    {
+      question: "CAN I PARTICIPATE WITHOUT A TEAM?",
+      answer: "Yes. Solo participants can join and also find teammates during the team formation phase."
+    },
+    {
+      question: "WHAT SHOULD I BRING TO THE HACKATHON?",
+      answer: "Bring your laptop, charger, creativity, and enthusiasm to build something amazing."
+    },
+    {
+      question: "ARE THERE PRIZES?",
+      answer: "Yes. Winning teams will receive exciting prizes, swag, and recognition."
+    }
+  ];
 
-    const toggleFAQ = (index: number) => {
-        if (openIndex === index) {
-            setOpenIndex(null);
-        } else {
-            setOpenIndex(index);
-        }
-    };
+  const toggleFAQ = (index: number) => {
+    setOpenIndex(openIndex === index ? null : index);
+  };
 
-    return (
-        <section className="faq-partners-section">
+  return (
+    <section className="faq-section">
 
-            <div className="faq-image"></div>
+      <div className="faq-header">
+        <h1>Frequently Asked Questions</h1>
+        <p>Everything you need to know about our hackathon</p>
+      </div>
 
-            <div className="faq-partners-content">
+      <div className="faq-container">
 
-                <div className="faq-section">
+        {faqData.map((faq, index) => (
 
-                    <h2 className="faq-title">
-                        FREQUENTLY ASKED
-                        <br />
-                        QUESTIONS
-                    </h2>
+          <div
+            key={index}
+            className={`faq-item ${openIndex === index ? "active" : ""}`}
+          >
 
-                    <div className="faq-questions">
+            <div
+              className="faq-question"
+              onClick={() => toggleFAQ(index)}
+            >
 
-                        {faqData.map((faq, index) => (
-                            <div className="faq-item" key={index}>
+              {faq.question}
 
-                                <div
-                                    className="faq-question"
-                                    onClick={() => toggleFAQ(index)}
-                                >
-                                    {faq.question}
-                                </div>
-
-                                {openIndex === index && (
-                                    <div className="faq-answer">
-                                        {faq.answer}
-                                    </div>
-                                )}
-
-                            </div>
-                        ))}
-
-                    </div>
-                </div>
-
-                <div className="partners-section">
-
-                    <h3 className="partners-title">
-                        PARTNERING WITH
-                    </h3>
-
-                    <div className="partners-grid">
-
-                        {partners.map((partner, index) => (
-                            <div className="partner-item" key={index}>
-
-                                <Image
-                                    src={partner.icon}
-                                    alt={partner.name}
-                                    width={24}
-                                    height={24}
-                                    className="partner-icon"
-                                />
-
-                                <span>{partner.name}</span>
-
-                            </div>
-                        ))}
-
-                    </div>
-                </div>
+              <span className="faq-icon">
+                {openIndex === index ? "▲" : "▼"}
+              </span>
 
             </div>
 
-        </section>
-    );
+            <div className={`faq-answer ${openIndex === index ? "open" : ""}`}>
+              {faq.answer}
+            </div>
+
+          </div>
+
+        ))}
+
+      </div>
+
+    </section>
+  );
 }
