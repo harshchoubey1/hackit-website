@@ -62,8 +62,8 @@ export default function Hero() {
                 <div className="hero-brand">
 
                     <div className="logo-group">
-                        <div className="hero-logo-main"></div>
-                        <div className="logo-x">×</div>
+                        
+                        
                         <div className="hero-logo"></div>
                     </div>
 

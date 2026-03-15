@@ -58,9 +58,9 @@ export default function Roadmap() {
 
   }, []);
 
-  return (
+ return (
 
-    <section className="roadmap-section">
+  <section id="roadmap" className="roadmap-section">
 
       <h2 className="roadmap-title">HACKATHON ROADMAP</h2>
 

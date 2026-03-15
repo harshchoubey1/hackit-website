@@ -1,9 +1,12 @@
 "use client";
 
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
 export default function RulesPage() {
+
+const [menuOpen,setMenuOpen] = useState(false);
 
 const judging = [
 {title:"Innovation & Creativity", value:20},
@@ -30,18 +33,40 @@ height={40}
 />
 </div>
 
-<div className="nav-links">
+{/* HAMBURGER MENU */}
+<div
+className="menu-toggle"
+onClick={()=>setMenuOpen(!menuOpen)}
+>
+☰
+</div>
 
-<Link href="/">Home</Link>
-<Link href="/problem-statement">Problems</Link>
-<Link href="/rules">Rules</Link>
-<Link href="/schedule">Download Template</Link>
+{/* NAV LINKS */}
 
-<Link href="/register">
-  <button className="register-btn">
-    Register
-  </button>
+<div className={`nav-links ${menuOpen ? "active" : ""}`}>
+
+<Link href="/" onClick={()=>setMenuOpen(false)}>
+Home
 </Link>
+
+<Link href="/problem-statement" onClick={()=>setMenuOpen(false)}>
+Problems
+</Link>
+
+<Link href="/rules" onClick={()=>setMenuOpen(false)}>
+Rules
+</Link>
+
+<Link href="/schedule" onClick={()=>setMenuOpen(false)}>
+Download Template
+</Link>
+
+<Link href="/register" onClick={()=>setMenuOpen(false)}>
+<button className="register-btn">
+Register
+</button>
+</Link>
+
 </div>
 
 </nav>
@@ -68,8 +93,6 @@ Please read the rules carefully before participating in HackIT.
 
 <div className="rules-sections">
 
-{/* GENERAL */}
-
 <div className="rule-box">
 
 <div className="rule-title">
@@ -87,8 +110,6 @@ Please read the rules carefully before participating in HackIT.
 </div>
 
 
-{/* PROJECT */}
-
 <div className="rule-box">
 
 <div className="rule-title">
@@ -105,8 +126,6 @@ Please read the rules carefully before participating in HackIT.
 
 </div>
 
-
-{/* SUBMISSION */}
 
 <div className="rule-box">
 
@@ -155,8 +174,7 @@ their solution.
 
 <p>
 Teams brainstorm innovative ideas and begin developing their
-initial prototype. Mentors assist with technical guidance
-and idea validation.
+initial prototype.
 </p>
 
 </div>
@@ -168,8 +186,7 @@ and idea validation.
 
 <p>
 Participants continue building their project by adding
-features, improving performance and testing the solution
-for stability and usability.
+features and improving performance.
 </p>
 
 </div>
@@ -181,8 +198,7 @@ for stability and usability.
 
 <p>
 Each team presents their project to judges with a live
-demonstration. Judges evaluate innovation, implementation,
-impact and presentation quality.
+demonstration.
 </p>
 
 </div>
@@ -192,7 +208,7 @@ impact and presentation quality.
 </div>
 
 
-{/* JUDGING CRITERIA */}
+{/* JUDGING */}
 
 <div className="judging-section">
 
@@ -227,7 +243,7 @@ style={{width:`${item.value}%`}}
 </div>
 
 
-{/* DOWNLOAD TEMPLATE MARQUEE */}
+{/* DOWNLOAD */}
 
 <div className="download-marquee">
 

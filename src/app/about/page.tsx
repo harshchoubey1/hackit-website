@@ -1,9 +1,12 @@
 "use client";
 
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
 export default function AboutSection() {
+
+const [menuOpen,setMenuOpen] = useState(false);
 
 return (
 
@@ -22,7 +25,18 @@ height={40}
 />
 </div>
 
-<div className="nav-links">
+{/* HAMBURGER */}
+
+<div
+className="menu-toggle"
+onClick={()=>setMenuOpen(!menuOpen)}
+>
+☰
+</div>
+
+{/* NAV LINKS */}
+
+<div className={`nav-links ${menuOpen ? "active" : ""}`}>
 
 <Link href="/">Home</Link>
 <Link href="/about">About</Link>
@@ -31,9 +45,9 @@ height={40}
 <Link href="/schedule">Download Template</Link>
 
 <Link href="/register">
-  <button className="register-btn">
-    Register
-  </button>
+<button className="register-btn">
+Register
+</button>
 </Link>
 
 </div>
@@ -51,7 +65,6 @@ THE HACKIT CHRONICLE
 {/* CONTENT */}
 
 <div className="about-container">
-
 
 {/* LEFT SIDE */}
 
@@ -96,7 +109,6 @@ the platform to transform your ideas into reality.
 </ul>
 
 </div>
-
 
 </div>
 

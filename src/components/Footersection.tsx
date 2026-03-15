@@ -1,3 +1,4 @@
+import Link from "next/link";
 export default function FooterSection() {
   return (
     <footer id="contact" className="footer-section">
@@ -20,14 +21,29 @@ export default function FooterSection() {
 
         {/* QUICK LINKS */}
         <div className="footer-links">
-          <h3>Quick Links</h3>
-          <ul>
-            <li>Register</li>
-            <li>Roadmap</li>
-            <li>Venue</li>
-            <li>FAQ</li>
-          </ul>
-        </div>
+  <h3>Quick Links</h3>
+
+  <ul>
+
+    <li>
+      <Link href="/register">Register</Link>
+    </li>
+
+    <li>
+     <a href="#roadmap">Roadmap</a> 
+    </li>
+
+    <li>
+      <a href="#venue">Venue</a>
+    </li>
+
+    <li>
+     <a href="#faq">FAQ</a>
+    </li>
+
+  </ul>
+
+</div>
 
         {/* MAP LOCATION */}
         <div className="footer-map">

@@ -1,6 +1,6 @@
 export default function Venue() {
-    return (
-        <section className="venue-section">
+   return (
+    <section id="venue" className="venue-section">
             <div className="venue-bg-image"></div>
             <div className="venue-content">
                 <h3 className="venue-subtitle">HACKATHON VENUE</h3>

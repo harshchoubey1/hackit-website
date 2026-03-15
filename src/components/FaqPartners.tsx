@@ -49,10 +49,11 @@ export default function FAQ() {
     setOpenIndex(openIndex === index ? null : index);
   };
 
-  return (
-    <section className="faq-section">
+  
+   return (
+  <section id="faq" className="faq-section">
 
-      <div className="faq-header">
+    <div className="faq-header">
         <h1>Frequently Asked Questions</h1>
         <p>Everything you need to know about our hackathon</p>
       </div>

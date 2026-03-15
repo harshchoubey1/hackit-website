@@ -22,6 +22,8 @@ type FormData = {
 
 export default function RegisterPage() {
 
+const [menuOpen,setMenuOpen] = useState(false);
+
 const [form,setForm] = useState<FormData>({
 email:"",
 teamName:"",
@@ -55,9 +57,7 @@ setForm({...form,[name]:files[0]});
 
 const handleSubmit = (e:FormEvent)=>{
 e.preventDefault();
-
 console.log(form);
-
 alert("Registration Submitted!");
 };
 
@@ -78,7 +78,18 @@ height={40}
 />
 </div>
 
-<div className="nav-links">
+{/* HAMBURGER */}
+
+<div
+className="menu-toggle"
+onClick={()=>setMenuOpen(!menuOpen)}
+>
+☰
+</div>
+
+{/* NAV LINKS */}
+
+<div className={`nav-links ${menuOpen ? "active" : ""}`}>
 
 <Link href="/">Home</Link>
 
@@ -106,8 +117,6 @@ Register Now
 
 <form className="register-form" onSubmit={handleSubmit}>
 
-{/* EMAIL */}
-
 <label>Email *</label>
 <input
 type="email"
@@ -115,9 +124,6 @@ name="email"
 required
 onChange={handleChange}
 />
-
-
-{/* TEAM NAME */}
 
 <label>Team Name *</label>
 <input
@@ -127,9 +133,6 @@ required
 onChange={handleChange}
 />
 
-
-{/* TEAM LEADER */}
-
 <label>Team Leader Name *</label>
 <input
 type="text"
@@ -137,9 +140,6 @@ name="leaderName"
 required
 onChange={handleChange}
 />
-
-
-{/* PHONE */}
 
 <label>Contact Number (WhatsApp) *</label>
 <input
@@ -149,9 +149,6 @@ required
 onChange={handleChange}
 />
 
-
-{/* PARTICIPANT TYPE */}
-
 <label>Are You? *</label>
 
 <select
@@ -159,15 +156,10 @@ name="participantType"
 required
 onChange={handleChange}
 >
-
 <option value="">Select</option>
 <option value="Amitian">AMITIAN</option>
 <option value="Non-Amitian">NON-AMITIAN</option>
-
 </select>
-
-
-{/* COLLEGE */}
 
 <label>University / College Name *</label>
 <input
@@ -177,9 +169,6 @@ required
 onChange={handleChange}
 />
 
-
-{/* ENROLLMENT */}
-
 <label>Enrollment Number / College ID *</label>
 <input
 type="text"
@@ -187,9 +176,6 @@ name="enrollment"
 required
 onChange={handleChange}
 />
-
-
-{/* COLLEGE ID UPLOAD */}
 
 <label>College ID Card (Photo) *</label>
 <input
@@ -200,18 +186,12 @@ required
 onChange={handleFile}
 />
 
-
-{/* BRANCH */}
-
 <label>Branch</label>
 <input
 type="text"
 name="branch"
 onChange={handleChange}
 />
-
-
-{/* YEAR */}
 
 <label>Academic Year *</label>
 
@@ -220,17 +200,12 @@ name="year"
 required
 onChange={handleChange}
 >
-
 <option value="">Select Year</option>
 <option>1st Year</option>
 <option>2nd Year</option>
 <option>3rd Year</option>
 <option>4th Year</option>
-
 </select>
-
-
-{/* PS TITLE 1 */}
 
 <label>PS Title 1 *</label>
 
@@ -239,7 +214,6 @@ name="ps1"
 required
 onChange={handleChange}
 >
-
 <option value="">Select Problem Statement</option>
 
 <option>PS1001 - MentorConnect</option>
@@ -251,11 +225,7 @@ onChange={handleChange}
 <option>PS4001 - PhishShield</option>
 <option>PS4002 - Intrusion Detection System</option>
 <option>PS5001 - Smart City Digital Twin</option>
-
 </select>
-
-
-{/* PS TITLE 2 */}
 
 <label>PS Title 2 (Optional)</label>
 
@@ -263,7 +233,6 @@ onChange={handleChange}
 name="ps2"
 onChange={handleChange}
 >
-
 <option value="">Optional</option>
 
 <option>PS1001 - MentorConnect</option>
@@ -275,11 +244,7 @@ onChange={handleChange}
 <option>PS4001 - PhishShield</option>
 <option>PS4002 - Intrusion Detection System</option>
 <option>PS5001 - Smart City Digital Twin</option>
-
 </select>
-
-
-{/* PAYMENT SCREENSHOT */}
 
 <label>Payment Screenshot *</label>
 
@@ -291,11 +256,8 @@ required
 onChange={handleFile}
 />
 
-
 <button type="submit">
-
 Submit Registration
-
 </button>
 
 </form>
@@ -303,5 +265,4 @@ Submit Registration
 </div>
 
 );
-
 }
