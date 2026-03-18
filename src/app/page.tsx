@@ -99,7 +99,6 @@ export default function Home() {
         <Roadmap />
         <Memories />
         <FaqPartners />
-        <FooterSection />
         
       </main>
 

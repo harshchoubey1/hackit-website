@@ -27,13 +27,7 @@ export default function Hero() {
       ================================================================ */}
 
       {/* Fading grid — unchanged */}
-      <div
-        className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff0a_1px,transparent_1px),linear-gradient(to_bottom,#ffffff0a_1px,transparent_1px)] bg-[size:4rem_4rem]"
-        style={{
-          maskImage: "radial-gradient(ellipse 80% 60% at 50% 20%, #000 40%, transparent 100%)",
-          WebkitMaskImage: "radial-gradient(ellipse 80% 60% at 50% 20%, #000 40%, transparent 100%)",
-        }}
-      />
+      
 
       {/* Central glow — opacity bahut kam ki, barely visible */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[500px] bg-[#FF6600]/6 blur-[140px] rounded-full pointer-events-none" />

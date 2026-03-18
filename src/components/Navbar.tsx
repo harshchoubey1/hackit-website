@@ -89,6 +89,13 @@ export default function Navbar() {
           backdropFilter:  "blur(24px)",
         }}
       >
+        <div
+        className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff0a_1px,transparent_1px),linear-gradient(to_bottom,#ffffff0a_1px,transparent_1px)] bg-[size:4rem_4rem]"
+        style={{
+          maskImage: "radial-gradient(ellipse 80% 60% at 50% 20%, #000 40%, transparent 100%)",
+          WebkitMaskImage: "radial-gradient(ellipse 80% 60% at 50% 20%, #000 40%, transparent 100%)",
+        }}
+      />
         {/* Ambient glow */}
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-[#FF6600]/5 blur-[100px] rounded-full pointer-events-none" />
 

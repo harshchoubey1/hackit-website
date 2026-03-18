@@ -67,17 +67,16 @@ export default function RulesPage() {
 
   return (
     <div
-      className="min-h-screen  text-white relative flex flex-col items-center pt-32 pb-0 overflow-x-hidden"
+      className="min-h-screen text-white relative flex flex-col items-center pt-16 pb-0 overflow-x-hidden"
       style={{ fontFamily: "var(--font-exo2)" }}
     >
 
       {/* Subtle background orb */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[400px] bg-[#d4510d]/8 blur-[120px] rounded-full pointer-events-none" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[400px] bg-[#FF6600]/6 blur-[120px] rounded-full pointer-events-none" />
 
-      {/* Main Content Container */}
       <div className="w-full max-w-6xl px-6 relative z-10 flex flex-col items-center">
 
-        {/* ── HEADER ─────────────────────────────────────────────────────── */}
+        {/* HEADER */}
         <div className="text-center mb-16 md:mb-24">
           <p
             className="text-[#4a9eff] tracking-[0.3em] text-xs uppercase mb-3"
@@ -89,31 +88,27 @@ export default function RulesPage() {
             className="text-4xl md:text-6xl font-bold uppercase tracking-tight mb-4 text-white"
             style={{ fontFamily: "var(--font-rajdhani)" }}
           >
-            Rules &{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#ff6b2b] to-[#a33a08]">
+            Rules &amp;{" "}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FF8533] to-[#CC5200]">
               Regulations
             </span>
           </h1>
-          <p className="text-gray-400 text-base max-w-2xl mx-auto leading-relaxed">
+          <p className="text-gray-500 text-base max-w-2xl mx-auto leading-relaxed">
             Please read the guidelines carefully before submitting your team&apos;s application.
           </p>
         </div>
 
-        {/* ── RULE CARDS ─────────────────────────────────────────────────── */}
+        {/* RULE CARDS */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full mb-24">
           {cards.map((card) => (
             <div
               key={card.title}
               className="bg-[#0a0b14] border border-white/8 rounded-2xl p-8
-                         hover:border-[#d4510d]/40 hover:bg-[#0d0e1a]
+                         hover:border-white/20 hover:bg-[#0d0e1a]
                          transition-all duration-300 flex flex-col h-full group"
             >
-              {/* Card header */}
               <div className="flex flex-col gap-4 mb-6 border-b border-white/5 pb-6">
-                <div
-                  className="w-12 h-12 rounded-full bg-[#d4510d]/10 flex items-center justify-center
-                             text-[#d4510d] text-xl group-hover:scale-110 transition-transform"
-                >
+                <div className="w-10 h-10 rounded-xl bg-white/5 border border-white/8 flex items-center justify-center text-gray-400 text-base">
                   {card.icon}
                 </div>
                 <h3
@@ -123,12 +118,10 @@ export default function RulesPage() {
                   {card.title}
                 </h3>
               </div>
-
-              {/* Rules list */}
               <ul className="text-gray-400 space-y-4 text-sm flex-grow">
                 {card.rules.map((rule, i) => (
                   <li key={i} className="flex items-start gap-2">
-                    <span className="text-[#d4510d] mt-0.5 flex-shrink-0">•</span>
+                    <span className="text-gray-600 mt-0.5 flex-shrink-0">—</span>
                     <span>{rule}</span>
                   </li>
                 ))}
@@ -137,7 +130,7 @@ export default function RulesPage() {
           ))}
         </div>
 
-        {/* ── EVENT FLOW ─────────────────────────────────────────────────── */}
+        {/* EVENT FLOW */}
         <div className="w-full max-w-3xl mb-24">
           <div className="text-center mb-12">
             <p
@@ -154,16 +147,10 @@ export default function RulesPage() {
             </h2>
           </div>
 
-          <div className="border-l-2 border-white/8 pl-8 space-y-12 ml-4 md:ml-0 relative">
+          <div className="border-l border-white/8 pl-8 space-y-12 ml-4 md:ml-0 relative">
             {phases.map((phase, i) => (
               <div key={i} className="relative group">
-                {/* Dot */}
-                <div
-                  className="absolute -left-[41px] top-1.5 w-5 h-5 
-                             border-2 border-[#d4510d] rounded-full
-                             group-hover:bg-[#d4510d] transition-colors duration-300"
-                />
-                {/* Phase number badge */}
+                <div className="absolute -left-[41px] top-1.5 w-4 h-4 bg-[#03040a] border border-[#4a9eff]/50 rounded-full group-hover:border-[#4a9eff] transition-colors duration-300" />
                 <span
                   className="text-[10px] tracking-[0.25em] text-[#4a9eff] uppercase mb-1 block"
                   style={{ fontFamily: "var(--font-mono)" }}
@@ -176,13 +163,13 @@ export default function RulesPage() {
                 >
                   {phase.title.split("—")[1]?.trim() ?? phase.title}
                 </h4>
-                <p className="text-gray-400 text-sm leading-relaxed">{phase.desc}</p>
+                <p className="text-gray-500 text-sm leading-relaxed">{phase.desc}</p>
               </div>
             ))}
           </div>
         </div>
 
-        {/* ── JUDGING CRITERIA ───────────────────────────────────────────── */}
+        {/* JUDGING CRITERIA */}
         <div className="w-full max-w-4xl mb-24 bg-[#0a0b14] border border-white/8 rounded-2xl p-8 md:p-12">
           <div className="text-center mb-10">
             <p
@@ -205,18 +192,15 @@ export default function RulesPage() {
                 <div className="flex justify-between items-end mb-2">
                   <span className="text-gray-300 text-sm md:text-base">{item.title}</span>
                   <span
-                    className="text-[#d4510d] font-bold text-sm"
+                    className="text-gray-400 text-xs"
                     style={{ fontFamily: "var(--font-mono)" }}
                   >
                     {item.value}%
                   </span>
                 </div>
-                {/* Track */}
-                <div className="w-full h-[3px] bg-white/5 rounded-full overflow-hidden">
-                  {/* Fill */}
+                <div className="w-full h-[2px] bg-white/5 rounded-full overflow-hidden">
                   <div
-                    className="h-full bg-gradient-to-r from-[#ff6b2b] to-[#a33a08] rounded-full
-                               transition-all duration-700"
+                    className="h-full bg-gradient-to-r from-white/40 to-white/10 rounded-full"
                     style={{ width: `${item.value}%` }}
                   />
                 </div>
@@ -226,25 +210,7 @@ export default function RulesPage() {
         </div>
 
       </div>
-
-      {/* ── MARQUEE BANNER ─────────────────────────────────────────────── */}
-      <div className="w-full py-4 overflow-hidden bg-[#d4510d]">
-        <div
-          className="flex whitespace-nowrap animate-[marquee_20s_linear_infinite]
-                     hover:[animation-play-state:paused]"
-        >
-          {[0, 1].map((i) => (
-            <span
-              key={i}
-              className="text-white font-bold tracking-[0.15em] text-sm md:text-base mx-8"
-              style={{ fontFamily: "var(--font-mono)" }}
-            >
-              DOWNLOAD HACKIT PPT TEMPLATE &nbsp;•&nbsp; DOWNLOAD HACKIT TEMPLATE &nbsp;•&nbsp; DOWNLOAD HACKIT PPT TEMPLATE &nbsp;•&nbsp; DOWNLOAD HACKIT TEMPLATE &nbsp;•&nbsp;
-            </span>
-          ))}
-        </div>
-      </div>
-
+      {/* Ticker/Marquee removed — now global in layout.tsx */}
     </div>
   );
 }
