@@ -1,8 +1,8 @@
 "use client";
 
 import { useState, ChangeEvent, FormEvent } from "react";
-import { db } from "@/lib/firebase";
-import { collection, addDoc, serverTimestamp } from "firebase/firestore";
+import { ref, push, set } from "firebase/database";
+import { db } from "@/lib/firebase"; // Tera path thoda alag ho sakta hai
 import { useRouter } from "next/navigation";
 import { problemsList } from "@/data/problems";
 
@@ -26,9 +26,9 @@ type FormData = {
 };
 
 export default function RegisterPage() {
-  const [step, setStep]               = useState(1);
+  const [step, setStep] = useState(1);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [fileNames, setFileNames]     = useState({ id: "", payment: "" });
+  const [fileNames, setFileNames] = useState({ id: "", payment: "" });
   const router = useRouter();
 
   const [form, setForm] = useState<FormData>({
@@ -61,10 +61,10 @@ export default function RegisterPage() {
     setIsSubmitting(true);
 
     try {
-      let collegeIdUrl  = "";
-      let paymentUrl    = "";
+      let collegeIdUrl = "";
+      let paymentUrl = "";
 
-      const CLOUD_NAME    = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME;
+      const CLOUD_NAME = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME;
       const UPLOAD_PRESET = "data_default";
 
       const uploadToCloudinary = async (file: File): Promise<string> => {
@@ -86,31 +86,36 @@ export default function RegisterPage() {
       };
 
       if (form.collegeId) collegeIdUrl = await uploadToCloudinary(form.collegeId as File);
-      if (form.payment)   paymentUrl   = await uploadToCloudinary(form.payment as File);
+      if (form.payment) paymentUrl = await uploadToCloudinary(form.payment as File);
 
       const finalData = {
-        teamName:        form.teamName,
-        teamSize:        form.teamSize,
-        leaderName:      form.leaderName,
-        email:           form.email,
-        phone:           form.phone,
-        githubLink:      form.githubLink,
+        teamName: form.teamName,
+        teamSize: form.teamSize,
+        leaderName: form.leaderName,
+        email: form.email,
+        phone: form.phone,
+        githubLink: form.githubLink,
         participantType: form.participantType,
-        college:         form.college,
-        enrollment:      form.enrollment,
-        year:            form.year,
-        ps1:             form.ps1,
-        ps2:             form.ps2,
+        college: form.college,
+        enrollment: form.enrollment,
+        year: form.year,
+        ps1: form.ps1,
+        ps2: form.ps2,
         collegeIdUrl,
         paymentUrl,
         membersData: Object.keys(form)
           .filter((key) => key.startsWith("member"))
           .reduce((obj, key) => { obj[key] = form[key]; return obj; }, {} as Record<string, unknown>),
-        registeredAt: serverTimestamp(),
+        // ⚠️ CHANGE 1: serverTimestamp() hata kar normal ISO time lagaya hai
+        registeredAt: new Date().toISOString(),
       };
 
-      const docRef = await addDoc(collection(db, "hackathon_registrations"), finalData);
-      console.log("Registration saved:", docRef.id);
+      // ⚠️ CHANGE 2: Firestore ka code hata kar Realtime Database ka code lagaya
+      const dbRef = ref(db, "hackathon_registrations"); // Folder ka naam
+      const newRegistrationRef = push(dbRef); // Nayi ID banayi
+      await set(newRegistrationRef, finalData); // Data save kar diya
+
+      console.log("Registration saved with key:", newRegistrationRef.key);
       router.push("/success");
     } catch (error) {
       console.error("Error submitting form:", error);
@@ -184,9 +189,8 @@ export default function RegisterPage() {
             {stepLabels.map((label, i) => (
               <span
                 key={label}
-                className={`transition-colors ${
-                  step >= i + 1 ? "text-white" : "text-gray-600"
-                }`}
+                className={`transition-colors ${step >= i + 1 ? "text-white" : "text-gray-600"
+                  }`}
               >
                 {label}
               </span>
@@ -208,7 +212,7 @@ export default function RegisterPage() {
             {step === 1 && (
               <div className="space-y-5">
                 <h2 className="text-lg font-semibold mb-6 pb-4 border-b border-white/8 text-white"
-                    style={{ fontFamily: "var(--font-rajdhani)" }}>
+                  style={{ fontFamily: "var(--font-rajdhani)" }}>
                   Team &amp; Leader Details
                 </h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
@@ -253,7 +257,7 @@ export default function RegisterPage() {
             {step === 2 && (
               <div className="space-y-5">
                 <h2 className="text-lg font-semibold mb-6 pb-4 border-b border-white/8 text-white"
-                    style={{ fontFamily: "var(--font-rajdhani)" }}>
+                  style={{ fontFamily: "var(--font-rajdhani)" }}>
                   Academic Background
                 </h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
@@ -293,7 +297,7 @@ export default function RegisterPage() {
             {step === 3 && (
               <div className="space-y-5">
                 <h2 className="text-lg font-semibold mb-6 pb-4 border-b border-white/8 text-white"
-                    style={{ fontFamily: "var(--font-rajdhani)" }}>
+                  style={{ fontFamily: "var(--font-rajdhani)" }}>
                   Problem Statement &amp; Team
                 </h2>
                 <div>
@@ -326,7 +330,7 @@ export default function RegisterPage() {
             {step === 4 && (
               <div className="space-y-5">
                 <h2 className="text-lg font-semibold mb-6 pb-4 border-b border-white/8 text-white"
-                    style={{ fontFamily: "var(--font-rajdhani)" }}>
+                  style={{ fontFamily: "var(--font-rajdhani)" }}>
                   Required Documents
                 </h2>
 
@@ -365,11 +369,10 @@ export default function RegisterPage() {
               <button
                 type="button"
                 onClick={prevStep}
-                className={`px-6 py-2.5 rounded-xl text-sm transition-colors ${
-                  step === 1
+                className={`px-6 py-2.5 rounded-xl text-sm transition-colors ${step === 1
                     ? "invisible"
                     : "text-gray-400 hover:text-white hover:bg-white/5"
-                }`}
+                  }`}
               >
                 Back
               </button>
