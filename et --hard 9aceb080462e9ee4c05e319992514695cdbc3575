@@ -1,0 +1,41 @@
+[33mcommit 9aceb080462e9ee4c05e319992514695cdbc3575[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: harshchoubey1 <choubeyh45@outlook.com>
+Date:   Sat Mar 14 23:49:15 2026 +0530
+
+    update css
+
+[33mcommit ac128fb12af0b4cb8f797d2fca14a77a0c8c7764[m
+Author: harshchoubey1 <choubeyh45@outlook.com>
+Date:   Sat Mar 14 23:42:19 2026 +0530
+
+    update css
+
+[33mcommit d0e799395a7be6de14352939bad99affb162f081[m
+Author: harshchoubey1 <choubeyh45@outlook.com>
+Date:   Sat Mar 14 22:41:14 2026 +0530
+
+    fix tailwind css import
+
+[33mcommit 32632a1aa4e811aa59171902436a0c20eb70ac83[m
+Author: harshchoubey1 <choubeyh45@outlook.com>
+Date:   Sat Mar 14 22:07:09 2026 +0530
+
+    update website
+
+[33mcommit b958323162d8ca1fb9afa14af2d46cd3d8fc116b[m
+Author: harshchoubey1 <choubeyh45@outlook.com>
+Date:   Sat Mar 14 18:20:37 2026 +0530
+
+    Fix typescript error, hydration warning, and missing image
+
+[33mcommit 717bf029b12229b9ddb6cab7ee3c31af937d0889[m
+Author: harshchoubey1 <choubeyh45@outlook.com>
+Date:   Sat Mar 14 15:43:12 2026 +0530
+
+    Prep for upload
+
+[33mcommit 48bb959f265bc687ac22202c1ae62c0039bf32cc[m
+Author: “axitag” <“adityanarayan3905@gmail.com”>
+Date:   Thu Mar 5 15:00:33 2026 +0530
+
+    Initial commit from Create Next App
